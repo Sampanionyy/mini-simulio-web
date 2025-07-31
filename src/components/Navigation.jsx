@@ -28,10 +28,19 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
 						<Link
 							to="/simulation"
 							className={`hover:text-blue-300 ${
-								isActive('/simulation') ? 'text-blue-400' : 'text-blue-400'
+								isActive('/simulation') ? 'text-blue-400' : 'text-white'
 							}`}
 						>
 							Faire une simulation
+						</Link>
+
+						<Link
+							to="/clients"
+							className={`hover:text-blue-300 ${
+								isActive('/clients') ? 'text-blue-400' : 'text-white'
+							}`}
+						>
+							Clients
 						</Link>
 
 						{user ? (

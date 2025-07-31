@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import SimulationPage from './pages/SimulationPage';
 import Layout from './components/Layout';
 import { AuthProvider } from './contexts/UserContext';
+import ClientPage from './pages/ClientPage';
 
 function App() {
 	return (
@@ -15,6 +16,8 @@ function App() {
 					<Route path="/" element={<Layout />}>
 						<Route index element={<HomePage />} />
 						<Route path="/simulation" element={<SimulationPage />} />
+						<Route path="/clients" element={<ClientPage />} />
+
 					</Route>
 					
 					{/* Routes sans layout (pages d'auth) */}
