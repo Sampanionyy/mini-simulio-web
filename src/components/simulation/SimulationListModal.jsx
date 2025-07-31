@@ -3,6 +3,8 @@ import { X, ChevronDown, ChevronUp, FileText } from 'lucide-react';
 import { simulationService } from '../../services/simulationService';
 import SimulationSummary from './SimulationSummary';
 import SimulationDetails from './SimulationDetails';
+import { PDFDownloadLink, pdf } from '@react-pdf/renderer';
+import SimulationPDFDocument from '../pdf/SimulationPDFDocument';
 
 const SimulationListModal = ({ clientId, onClose }) => {
     const [simulations, setSimulations] = useState([]);
@@ -31,8 +33,22 @@ const SimulationListModal = ({ clientId, onClose }) => {
         setExpandedId(expandedId === id ? null : id);
     };
 
-    const exportPDF = (simulation) => {
-        alert(`Export PDF simulation #${simulation.id} (fonction à implémenter)`);
+    const exportPDF = async (simulation) => {
+        console.log({simulation})
+        const doc = <SimulationPDFDocument simulation={simulation} />;
+        const asPdf = pdf([]);
+        asPdf.updateContainer(doc);
+
+        const blob = await asPdf.toBlob();
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `simulation_${simulation.id}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     };
 
     if (!clientId) return null;
