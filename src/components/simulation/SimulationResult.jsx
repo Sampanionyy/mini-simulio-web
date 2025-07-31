@@ -1,6 +1,6 @@
 import { Calculator, TrendingUp, PieChart } from 'lucide-react';
-import ResultCard from './ResultCard';
-import ResultDetail from './ResultDetail';
+import ResultCard from '../ResultCard';
+import ResultDetail from '../ResultDetail';
 
 const SimulationResults = ({ simulationResult }) => {
     if (!simulationResult) {

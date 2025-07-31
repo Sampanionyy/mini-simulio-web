@@ -4,6 +4,7 @@ import { clientService } from '../services/clientService'
 import ClientCard from '../components/client/ClientCard'
 import ClientFormModal from '../components/client/ClientFormModal'
 import DeleteModal from '../components/client/DeleteModal'
+import { useNavigate } from 'react-router-dom'
 
 const ClientPage = () => {
     const [clients, setClients] = useState([])
@@ -12,6 +13,7 @@ const ClientPage = () => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
     const [selectedClient, setSelectedClient] = useState(null)
     const [actionLoading, setActionLoading] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchClients()
@@ -44,15 +46,17 @@ const ClientPage = () => {
         setIsDeleteModalOpen(true)
     }
 
+    const handleAssignSimulation = (client) => {
+        navigate(`/simulation?clientId=${client.id}`)
+    }
+
     const handleFormSubmit = async (values, clientId = null) => {
         try {
             setActionLoading(true)
             
             if (clientId) {
-                // Modification
                 await clientService.update(clientId, values)
             } else {
-                // Ajout
                 await clientService.create(values)
             }
             
@@ -152,6 +156,7 @@ const ClientPage = () => {
                             client={client}
                             onEdit={handleEditClient}
                             onDelete={handleDeleteClient}
+                            onAssignSimulation={handleAssignSimulation} 
                         />
                     ))}
                 </div>

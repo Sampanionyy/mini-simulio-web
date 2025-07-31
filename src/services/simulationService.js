@@ -16,4 +16,19 @@ export const simulationService = {
             };
         }
     },
+
+    getByClientId: async (clientId) => {
+        try {
+            const response = await api.get(`/simulations/client/${clientId}`);
+            return {
+                success: true,
+                data: response.data
+            };
+        } catch (error) {
+            return {
+                success: false,
+                message: error.message || 'Erreur lors du chargement des simulations',
+            };
+        }
+    }
 }
