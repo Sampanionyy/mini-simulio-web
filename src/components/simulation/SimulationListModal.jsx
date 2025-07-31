@@ -7,7 +7,7 @@ import { PDFDownloadLink, pdf } from '@react-pdf/renderer';
 import SimulationPDFDocument from '../pdf/SimulationPDFDocument';
 
 const SimulationListModal = ({ clientId, onClose }) => {
-    const [simulations, setSimulations] = useState([]);
+    const [simulations, setSimulations] = useState(null);
     const [expandedId, setExpandedId] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -52,6 +52,9 @@ const SimulationListModal = ({ clientId, onClose }) => {
     };
 
     if (!clientId) return null;
+    useEffect(() => {
+        console.log({simulations})
+    }, [simulations])
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -60,7 +63,7 @@ const SimulationListModal = ({ clientId, onClose }) => {
                 onClick={onClose}
             />
 
-            <div className="relative bg-gray-800 rounded-3xl p-8 mx-4 w-full max-w-4xl max-h-[90vh] overflow-auto border border-emerald-500 shadow-2xl shadow-emerald-600 animate-in fade-in duration-300 zoom-in-95">
+            <div className="relative bg-gray-800 rounded-3xl p-8 mx-4 w-full max-w-4xl max-h-[90vh] overflow-auto border border-purple-300 shadow-2xl shadow-purple-400 animate-in fade-in duration-300 zoom-in-95">
                 <button
                     onClick={onClose}
                     aria-label="Fermer"
@@ -69,18 +72,18 @@ const SimulationListModal = ({ clientId, onClose }) => {
                     <X size={24} className="text-gray-300" />
                 </button>
 
-                <h2 className="text-3xl font-bold text-emerald-400 mb-6 text-center">
+                <h2 className="text-3xl font-bold text-purple-400 mb-6 text-center">
                     Simulations précédentes
                 </h2>
 
                 {loading ? (
                     <p className="text-gray-400 text-center">Chargement des simulations...</p>
-                ) : simulations.length === 0 ? (
+                ) : (!simulations) ? (
                     <p className="text-gray-500 text-center">Aucune simulation trouvée pour ce client.</p>
                 ) : (
                     <ul className="space-y-4">
                         {simulations.map(sim => (
-                            <li key={sim.id} className="bg-gray-900 rounded-xl p-5 shadow-md border border-emerald-600">
+                            <li key={sim.id} className="bg-gray-900 rounded-xl p-5 shadow-md border border-purple-500">
                                 <div
                                     className="flex justify-between items-center cursor-pointer select-none"
                                     onClick={() => toggleDetails(sim.id)}
@@ -89,20 +92,20 @@ const SimulationListModal = ({ clientId, onClose }) => {
                                     <div className="flex items-center gap-4">
                                         <button
                                             onClick={e => { e.stopPropagation(); exportPDF(sim); }}
-                                            className="p-1 rounded hover:bg-emerald-600 text-emerald-400"
+                                            className="p-1 rounded hover:bg-purple-500 text-purple-300"
                                             title="Exporter en PDF"
                                         >
                                             <FileText size={20} />
                                         </button>
                                         {expandedId === sim.id ? (
-                                            <ChevronUp size={24} className="text-emerald-400" />
+                                            <ChevronUp size={24} className="text-purple-400" />
                                         ) : (
-                                            <ChevronDown size={24} className="text-emerald-400" />
+                                            <ChevronDown size={24} className="text-purple-400" />
                                         )}
                                     </div>
                                 </div>
                                 {expandedId === sim.id && (
-                                    <div className="mt-4 border-t border-emerald-600 pt-4">
+                                    <div className="mt-4 border-t border-purple-600 pt-4">
                                         <SimulationDetails simulation={sim} />
                                     </div>
                                 )}
