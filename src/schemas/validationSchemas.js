@@ -21,7 +21,5 @@ export const registerValidationSchema = Yup.object({
         .required('Le mot de passe est requis'),
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('password')], 'Les mots de passe ne correspondent pas')
-        .required('La confirmation du mot de passe est requise'),
-    terms: Yup.boolean()
-        .oneOf([true], 'Vous devez accepter les conditions d\'utilisation')
+        .required('La confirmation du mot de passe est requise')
 });

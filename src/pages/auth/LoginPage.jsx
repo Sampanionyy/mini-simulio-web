@@ -47,7 +47,6 @@ const LoginPage = () => {
 
                 navigate('/');
             } else {
-                console.log('DISOOOOO')
                 setSubmitStatus({
                     type: 'error',
                     message: result.message || 'Échec de la connexion',

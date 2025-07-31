@@ -14,7 +14,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<HomePage />} />
-						<Route path="simulation" element={<SimulationPage />} />
+						<Route path="/simulation" element={<SimulationPage />} />
 					</Route>
 					
 					{/* Routes sans layout (pages d'auth) */}

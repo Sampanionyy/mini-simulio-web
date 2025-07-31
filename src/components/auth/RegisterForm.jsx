@@ -13,7 +13,6 @@ const RegisterForm = ({ onSubmit, isSubmitting }) => {
         email: '',
         password: '',
         confirmPassword: '',
-        terms: false
     };
 
     return (
@@ -56,25 +55,6 @@ const RegisterForm = ({ onSubmit, isSubmitting }) => {
                         name="confirmPassword"
                         label="Confirmer le mot de passe"
                     />
-
-                    <div className="flex items-start">
-                        <Field
-                            type="checkbox"
-                            id="terms"
-                            name="terms"
-                            className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-600 bg-gray-800 rounded"
-                        />
-                        <label htmlFor="terms" className="ml-3 text-sm text-gray-300">
-                            J'accepte les{' '}
-                            <a href="#" className="text-purple-400 hover:text-purple-300 font-medium">
-                                conditions d'utilisation
-                            </a>{' '}
-                            et la{' '}
-                            <a href="#" className="text-purple-400 hover:text-purple-300 font-medium">
-                                politique de confidentialité
-                            </a>
-                        </label>
-                    </div>
                     <ErrorMessage name="terms" component="div" className="text-red-500 text-sm" />
 
                     <SubmitButton
