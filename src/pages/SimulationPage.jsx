@@ -71,8 +71,6 @@ const SimulationPage = () => {
 
     const handleClearClient = () => {
         setSelectedClient(null)
-        // Optionnel: supprimer clientId de l'URL si besoin
-        // window.history.replaceState(null, '', '/simulation')
     }
 
     if (loadingClient) {

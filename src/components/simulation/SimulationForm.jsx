@@ -1,6 +1,7 @@
 import { Calculator, AlertCircle } from 'lucide-react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useEffect } from 'react';
 
 const SimulationForm = ({ onSubmit, isLoading, submitError }) => {
     const formik = useFormik({
@@ -9,7 +10,7 @@ const SimulationForm = ({ onSubmit, isLoading, submitError }) => {
             apport: '',
             duree_annees: '20',
             taux_interet: '3.5',
-            taux_assurance: '0.36',
+            taux_assurance: '0.32',
             mois_debut: new Date().getMonth() + 1,
             annee_debut: new Date().getFullYear(),
             frais_agence: '',

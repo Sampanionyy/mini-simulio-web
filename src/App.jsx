@@ -7,6 +7,7 @@ import SimulationPage from './pages/SimulationPage';
 import Layout from './components/Layout';
 import { AuthProvider } from './contexts/UserContext';
 import ClientPage from './pages/ClientPage';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 	return (
@@ -15,12 +16,13 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<HomePage />} />
-						<Route path="/simulation" element={<SimulationPage />} />
-						<Route path="/clients" element={<ClientPage />} />
 
+						<Route element={<PrivateRoute />}>
+							<Route path="/simulation" element={<SimulationPage />} />
+							<Route path="/clients" element={<ClientPage />} />
+						</Route>
 					</Route>
 					
-					{/* Routes sans layout (pages d'auth) */}
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" element={<RegisterPage />} />
 				</Routes>

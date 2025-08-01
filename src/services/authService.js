@@ -11,7 +11,7 @@ export const authService = {
         } catch (error) {
             return {
                 success: false,
-                message: error.message || 'Une erreur est survenue lors de la création du compte',
+                message: 'Une erreur est survenue lors de la création du compte',
                 fieldError: error.message.includes('email') ? { field: 'email', message: error.message } : null
             };
         }
@@ -29,7 +29,7 @@ export const authService = {
         } catch (error) {
             return {
                 success: false,
-                message: error.message || 'Une erreur est survenue lors de la connexion'
+                message: 'Une erreur est survenue lors de la connexion'
             };
         }
     },
