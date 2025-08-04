@@ -57,9 +57,6 @@ const RegisterPage = () => {
                     Se connecter
                 </a>
             </p>
-            <div className="mt-4 text-xs text-gray-500 text-center">
-                <p>💡 Testez avec "test@error.com" pour voir la gestion d'erreur</p>
-            </div>
         </>
     );
 
